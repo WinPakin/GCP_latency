@@ -1,8 +1,5 @@
 "use strict";
-const { performance } = require('perf_hooks');
-const axios = require('axios');
-import util from '../src/api/util';
-const {funcStatistics, multiLayerStatistics} = util
+const {funcStatistics, multiLayerStatistics} = require("../src/api/util");
 
 /* 
 Test all the function locations 

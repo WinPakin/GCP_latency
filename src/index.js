@@ -1,8 +1,11 @@
 "use strict";
-import express from 'express';
-import { urlencoded, json } from 'body-parser';
-import routerApi from './api/router.js';
-import { PORT } from '../config.js';
+const express = require('express');
+const bodyParser = require('body-parser');
+const { urlencoded, json } = bodyParser;
+const port = require('../config');
+const { PORT } = port;
+const routerApi = require('./api/router.js');
+
 const app = express();
 app.use(urlencoded({ extended: true }));
 app.use(json());

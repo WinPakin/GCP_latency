@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec babel-node src/index.js",
-    "testUtil": "nodemon --exec babel-node test/testUtil.js"
+    "testUtil": "node test/testUtil.js",
+    "start": "nodemon src/index.js"
   },
   "author": "Pakin Wirojwatanakul",
   "license": "ISC",

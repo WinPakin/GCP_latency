@@ -1,5 +1,5 @@
 "use strict";
-import { mean, median, max, min, std, lst, random } from 'mathjs';
+const { mean, median, max, min, std, round } = require('mathjs');
 const { performance } = require('perf_hooks');
 const axios = require('axios');
 
@@ -98,7 +98,7 @@ const funcStatistics = async (location, testName) => {
         let t0 = performance.now();
         let result = await axios.get(matchFuncURL(location))
         let t1 = performance.now();
-        timeDiff = t1 - t0;
+        timeDiff = round(t1 - t0,2 );
         lst.push(timeDiff);
         bucketIndex = assignBucket(timeDiff);
         hundredBucket[bucketIndex] += 1;
@@ -109,11 +109,11 @@ const funcStatistics = async (location, testName) => {
         testName: testName,
         infrastructure: 'function',
         location: location,
-        mean: mean(lst),
-        median: median(lst),
+        mean: round(mean(lst), 2),
+        median: round(median(lst), 2),
         max: max(lst),
         min: min(lst),
-        std: std(lst),
+        std: round(std(lst), 2),
         lst: hundredBucket
     };
 
@@ -180,7 +180,7 @@ const multiLayerStatistics = async (location, testName) => {
             msg: "ping"
         });
         let t1 = performance.now();
-        timeDiff = t1 - t0;
+        timeDiff = round(t1 - t0,2);
         lst.push(timeDiff);
         bucketIndex = assignBucket(timeDiff);
         hundredBucket[bucketIndex] += 1;
@@ -191,18 +191,22 @@ const multiLayerStatistics = async (location, testName) => {
         testName: testName,
         infrastructure: 'multiLayer',
         location: location,
-        mean: mean(lst),
-        median: median(lst),
+        mean: round(mean(lst), 2),
+        median: round(median(lst), 2),
         max: max(lst),
         min: min(lst),
-        std: std(lst),
+        std: round(std(lst), 2),
         lst: hundredBucket
     };
 
 }
 
+module.exports = {
+    funcStatistics,
+    multiLayerStatistics
 
-export default {
-    funcStatistics: funcStatistics,
-    multiLayerStatistics: multiLayerStatistics,
 }
+// export default {
+//     funcStatistics: funcStatistics,
+//     multiLayerStatistics: multiLayerStatistics,
+// }

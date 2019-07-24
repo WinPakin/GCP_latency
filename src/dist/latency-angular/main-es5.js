@@ -316,7 +316,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"p-5 mx-5 mt-3 shadow-lg rounded\">\n                <div class=\"alert alert-primary font-weight-bold shadow rounded\">\n                        About\n                </div>\n                \n                <p class=\"p-5 shadow rounded\">\n                        Lorem ipsum ullamcorper bibendum cras nisl convallis euismod nostra, odio tempus vulputate per posuere aliquam nostra neque nibh, senectus viverra etiam aliquet quam netus litora.\n                \n        \n                                \n                </p>\n                \n                <div class=\"alert alert-primary font-weight-bold shadow rounded\">\n                        About\n                </div>\n                \n                <p class=\"p-5 shadow rounded\">\n                        Lorem ipsum ullamcorper bibendum cras nisl convallis euismod nostra, odio tempus vulputate per posuere aliquam nostra neque nibh, senectus viverra etiam aliquet quam netus litora.             \n                </p>\n        </div>"
+module.exports = "<div class=\"p-5 mx-5 mt-3 shadow-lg rounded\">\n                <div class=\"alert alert-primary font-weight-bold shadow rounded\">\n                        Project Introduction\n                </div>\n\n                \n                \n                <p class=\"p-5 shadow rounded\">\n                        This project seeks to explore how the location of a computing unit affects the latency of the different types of computing architectures. The two types of computing infrastructures that will be tested are the GCP function servers and a two tier microserver application hosted by GCP kubernetes engine. The testing server is located in central U.S., and the tested computing units are locationed at Google's Data centers in central U.S., southeast Asia, and west Europe. The front end is built using Angular 8.0.0 and served using Express.js.  \n                \n           \n                </p>\n                \n                <div class=\"alert alert-primary font-weight-bold shadow rounded\">\n                        Serverless Function Latency Tests\n                </div>\n\n                <p class=\"p-5 shadow rounded\">\n                        Serverless Functions are single-purpose functions that are attached to events emitted from other infrastructures and services. The function gets triggered when the event that it watches is triggered. Since the functions are not provisioned on any servers, developers do not need to worry about configuring the infrastructure, making serverless functions one of the simpliest ways to deploy code on the code. \n                        <br>\n                        <br>\n                        The serverless functions will be tested according to the diagram below. Since the testing server is located in central U.S., we would expect the function servers located in central U.S. to have a lower latency than the function servers located on the other continents.            \n                </p>\n\n                <img src=\"assets/Function_Test.png\" class=\"img-fluid pic-size p-5 shadow rounded mb-3\">\n\n                <div class=\"alert alert-primary font-weight-bold shadow rounded\">\n                        Two Tier Microservice Latency Tests\n                </div>\n\n                <p class=\"p-5 shadow rounded\">\n                                The two tier microservice application is deployed using Google's Kubternetes Engine. GKE provides a managed environment for deploying, managing, and scaling containerized applications using Google infrastructure. The environment GKE provides consists of multiple machines (specifically, Google Compute Engine instances) grouped together to form a cluster.\n                                <br>\n                                <br>\n                                The two tier microservice application will be tested according to the diagram below. Same with the serverless function tests, since the testing server is located in central U.S., we would expect the function servers located in central U.S. to have a lower latency than the function servers located on the other continents.\n        \n                </p>\n\n                <img src=\"assets/MultiLayer_Test.png\" class=\"img-fluid pic-size p-5 shadow rounded mb-3\">\n\n\n\n        </div>"
 
 /***/ }),
 
@@ -338,7 +338,7 @@ module.exports = "<app-header></app-header>\n<router-outlet></router-outlet>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"p-5 mx-5 mt-3 shadow-lg rounded\">\n        <div class=\"alert alert-primary font-weight-bold shadow rounded\">\n                Contact\n        </div>\n        \n        <p class=\"p-5 shadow rounded\">\n                Lorem ipsum ullamcorper bibendum cras nisl convallis euismod nostra, odio tempus vulputate per posuere aliquam nostra neque nibh, senectus viverra etiam aliquet quam netus litora.\n        \n\n                        \n        </p>\n        \n        <div class=\"alert alert-primary font-weight-bold shadow rounded\">\n                Contact\n        </div>\n        \n        <p class=\"p-5 shadow rounded\">\n                Lorem ipsum ullamcorper bibendum cras nisl convallis euismod nostra, odio tempus vulputate per posuere aliquam nostra neque nibh, senectus viverra etiam aliquet quam netus litora.             \n        </p>\n</div>"
+module.exports = "<div class=\"p-5 mx-5 mt-3 shadow-lg rounded\">\n        <div class=\"alert alert-primary font-weight-bold shadow rounded\">\n                Contact\n        </div>\n        \n        <p class=\"p-5 shadow rounded\">\n                <b>Author: </b> Pakin Wirojwatanakul\n                <br>\n                <b>Email: </b> wirojwatanakul@gmail.com\n        </p>\n        \n\n</div>"
 
 /***/ }),
 
@@ -360,7 +360,7 @@ module.exports = "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">\n<
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Display Each Test cases -->\n<div class=\"p-5 m-5 shadow-lg rounded\" *ngFor=\"let stat of statLst$ | async\">\n        <div class=\"alert alert-success font-weight-bold shadow rounded\">\n                {{ stat.testName }}\n        </div>\n        <table class=\"table\">\n                <thead>\n                  <tr>\n                    <th scope=\"col\">Infrastructure</th>\n                    <th scope=\"col\">Location</th>\n                    <th scope=\"col\">Mean</th>\n                    <th scope=\"col\">Median</th>\n                    <th scope=\"col\">Max</th>\n                    <th scope=\"col\">Min</th>\n                    <th scope=\"col\">Std</th>\n  \n                  </tr>\n                </thead>\n                <tbody>\n                  <tr>\n                    <td>{{ stat.infrastructure }}</td>\n                    <td>{{ stat.location }}</td>\n                    <td>{{ stat.mean }}</td>\n                    <td>{{ stat.median }}</td>\n                    <td>{{ stat.max }}</td>\n                    <td>{{ stat.min }}</td>\n                    <td>{{ stat.std }}</td>\n                  </tr>\n                </tbody>\n        </table>\n\n      <!-- chart.js data -->\n        <div class=\"chart\">\n                    <canvas baseChart\n                            [datasets]= \"[{data: stat.lst, label: 'Milliseconds'}]\"\n                            [labels]=\"barChartLabels\"\n                            [options]=\"barChartOptions\"\n                            [legend]=\"barChartLegend\"\n                            [chartType]=\"barChartType\">\n                    </canvas>\n        </div>\n</div>\n\n"
+module.exports = "<!-- Display Each Test cases -->\n<div class=\"p-5 m-5 shadow-lg rounded\" *ngFor=\"let stat of statLst$ | async\">\n        <div class=\"alert alert-success font-weight-bold shadow rounded\">\n                {{ stat.testName }}: latency measured in milliseconds.\n        </div>\n        <table class=\"table\">\n                <thead>\n                  <tr>\n                    <th scope=\"col\">Infrastructure</th>\n                    <th scope=\"col\">Location</th>\n                    <th scope=\"col\">Mean</th>\n                    <th scope=\"col\">Median</th>\n                    <th scope=\"col\">Max</th>\n                    <th scope=\"col\">Min</th>\n                    <th scope=\"col\">Std</th>\n  \n                  </tr>\n                </thead>\n                <tbody>\n                  <tr>\n                    <td>{{ stat.infrastructure }}</td>\n                    <td>{{ stat.location }}</td>\n                    <td>{{ stat.mean }}</td>\n                    <td>{{ stat.median }}</td>\n                    <td>{{ stat.max }}</td>\n                    <td>{{ stat.min }}</td>\n                    <td>{{ stat.std }}</td>\n                  </tr>\n                </tbody>\n        </table>\n\n      <!-- chart.js data -->\n        <div class=\"chart\">\n                    <canvas baseChart\n                            [datasets]= \"[{data: stat.lst, label: 'Latency (ms)'}]\"\n                            [labels]=\"barChartLabels\"\n                            [options]=\"barChartOptions\"\n                            [legend]=\"barChartLegend\"\n                            [chartType]=\"barChartType\">\n                    </canvas>\n        </div>\n</div>\n\n"
 
 /***/ }),
 
@@ -404,7 +404,7 @@ module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div cla
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2Fib3V0L2Fib3V0LmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = ".pic-size {\n    max-width: 75%;\n    height: auto;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYWJvdXQvYWJvdXQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGNBQWM7SUFDZCxZQUFZO0FBQ2hCIiwiZmlsZSI6InNyYy9hcHAvYWJvdXQvYWJvdXQuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5waWMtc2l6ZSB7XG4gICAgbWF4LXdpZHRoOiA3NSU7XG4gICAgaGVpZ2h0OiBhdXRvO1xufSJdfQ== */"
 
 /***/ }),
 
@@ -719,6 +719,7 @@ __webpack_require__.r(__webpack_exports__);
 var StatisticsService = /** @class */ (function () {
     function StatisticsService(http) {
         this.http = http;
+        // Place holder data used for testing purposes only
         this.placeHolder = {
             testName: 'hello world test',
             infrastructure: 'function',
@@ -730,13 +731,13 @@ var StatisticsService = /** @class */ (function () {
             std: 6.4,
             lst: [10, 14, 15, 18, 8, 1, 2, 3, 4, 7]
         };
-        this.testLst = [this.placeHolder];
+        // For testing
+        // public testLst : Data[] = [this.placeHolder];
+        this.testLst = [];
     }
     // appends data to the list
     StatisticsService.prototype.add = function (data) {
         var _this = this;
-        // this.testLst.push(this.createData(data));
-        // console.log(`testLst: ${JSON.stringify(this.testLst)}`);
         var qString = "api/" + data.infrastructure + "/" + data.location + "/" + data.testName;
         this.http.get(qString).subscribe(function (res) {
             _this.testLst.push(res);
@@ -819,7 +820,7 @@ var TestCaseComponent = /** @class */ (function () {
             scaleShowVerticalLines: false,
             responsive: true
         };
-        this.barChartLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+        this.barChartLabels = ['< 100', '< 200', '< 300', '< 400', '< 500', '< 600', '< 700', '< 800', '< 900', '> 900'];
         this.barChartType = 'bar';
         this.barChartLegend = true;
         this.statLst$ = this.statisticsService.getLst();
@@ -940,7 +941,6 @@ var TestFormComponent = /** @class */ (function () {
         });
     }
     TestFormComponent.prototype.onSubmit = function (data) {
-        console.log("you have submitted " + JSON.stringify(data));
         if (!data.testName || data.testName.length === 0) {
             this.error = "Your test name cannot be empty!";
         }
