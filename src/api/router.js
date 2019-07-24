@@ -34,6 +34,7 @@ Output:
 */
 router.get('/:infrastructure/:location/:testName', 
        (req, res) => {
+           console.log("got it");
            if(req.params.infrastructure === "function"){
             funcStatistics(req.params.location, req.params.testName).then(
                 (data) => { res.json(data) }

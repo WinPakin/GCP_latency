@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tier1-deployment
+  labels:
+    app: tier1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tier1
+  template:
+    metadata:
+      labels:
+        app: tier1
+    spec:
+      containers:
+      - name: first-tier
+        image: winpakin/first-tier:0.0.1
+        ports:
+          - containerPort: 3001

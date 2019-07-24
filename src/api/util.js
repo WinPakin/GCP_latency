@@ -1,5 +1,77 @@
 "use strict";
 import { mean, median, max, min, std, lst, random } from 'mathjs';
+const { performance } = require('perf_hooks');
+const axios = require('axios');
+
+const NUM_TEST = 30;
+
+
+
+// URL of us-central function
+const urlUsCentralFunc = 'https://us-central1-upheld-rookery-246419.cloudfunctions.net/function-1';
+
+// URL of asia-southeast function
+// TODO: change
+const urlAsiaSouthEastFunc = 'https://us-central1-upheld-rookery-246419.cloudfunctions.net/function-1';
+
+// URL of europe-west function
+// TODO: change
+const urlEuroWestFunc = 'https://us-central1-upheld-rookery-246419.cloudfunctions.net/function-1';
+
+
+/*
+Desc: Assigns time to 100 millisecond bucket.
+Input: Latency time
+Output: Index of bucket
+*/
+const assignBucket = (time) => {
+    time = time / 100;
+    let rounded = Math.ceil(time);
+    switch(rounded) {
+        case 1: 
+            return 0;
+        case 2:
+            return 1;
+        case 3:
+            return 2;
+        case 4:
+            return 3
+        case 5:
+            return 4
+        case 6:
+            return 5
+        case 7:
+            return 6
+        case 8:
+            return 7
+        case 9:
+            return 8
+        default:
+            return 9
+
+    }
+}
+
+/*
+Desc: match function location to URL
+Input: function location
+Output: function URL
+*/
+const matchFuncURL = (loc) => {
+    switch(loc) {
+        case 'us-central':
+            return urlUsCentralFunc;
+        case 'asia-southeast':
+            return urlAsiaSouthEastFunc;
+        case "europe-west":
+            return urlEuroWestFunc;
+        default:
+            throw("Function location does not match existing URL");
+    }
+}
+
+
+
 
 /*
 Desc: Calculates Latency Statistics for Google Cloud Function Servers
@@ -19,15 +91,19 @@ Output:
 */
 const funcStatistics = async (location, testName) => {
     const lst = [];
-    for(let i = 0; i < 10; i ++){
-        lst.push(random(10,30));
-    }
+    const hundredBucket = new Array(10).fill(0);
+    let bucketIndex;
+    let timeDiff;
+    for(let i = 0; i < NUM_TEST; i ++){
+        let t0 = performance.now();
+        let result = await axios.get(matchFuncURL(location))
+        let t1 = performance.now();
+        timeDiff = t1 - t0;
+        lst.push(timeDiff);
+        bucketIndex = assignBucket(timeDiff);
+        hundredBucket[bucketIndex] += 1;
 
-    let promise = new Promise((resolve, reject) => {
-        setTimeout(() => resolve("done!"), 200)
-      });
-    
-    let result = await promise;
+    }
 
     return {
         testName: testName,
@@ -38,10 +114,44 @@ const funcStatistics = async (location, testName) => {
         max: max(lst),
         min: min(lst),
         std: std(lst),
-        lst: lst
+        lst: hundredBucket
     };
 
 }
+
+
+
+
+// IP of us-central k8
+const IP_us = "http://35.188.77.79:80"
+
+// IP of asia-southeast k8
+// TODO: change
+const IP_asia = "http://35.188.77.79:80" 
+
+// IP of europe-west k8
+const IP_europe = "http://35.188.77.79:80" 
+
+
+/*
+Desc: match multiLayer location to IP
+Input: function location
+Output: multiLayer service IP
+*/
+const matchMultiIP = (loc) => {
+    switch(loc) {
+        case 'us-central':
+            return IP_us;
+        case 'asia-southeast':
+            return IP_asia;
+        case "europe-west":
+            return IP_europe;
+        default:
+            throw("MultiLayer location does not match existing IP");
+    }
+}
+
+
 
 /*
 Desc: Calculates Latency Statistics for Multilayer App
@@ -61,15 +171,21 @@ Output:
 */
 const multiLayerStatistics = async (location, testName) => {
     const lst = [];
-    for(let i = 0; i < 10; i ++){
-        lst.push(random(10,30));
-    }
+    const hundredBucket = new Array(10).fill(0);
+    let bucketIndex;
+    let timeDiff;
+    for(let i = 0; i < NUM_TEST; i ++){
+        let t0 = performance.now();
+        let result = await axios.post(matchMultiIP(location), {
+            msg: "ping"
+        });
+        let t1 = performance.now();
+        timeDiff = t1 - t0;
+        lst.push(timeDiff);
+        bucketIndex = assignBucket(timeDiff);
+        hundredBucket[bucketIndex] += 1;
 
-    let promise = new Promise((resolve, reject) => {
-        setTimeout(() => resolve("done!"), 200)
-      });
-    
-    let result = await promise;
+    }
 
     return {
         testName: testName,
@@ -80,7 +196,7 @@ const multiLayerStatistics = async (location, testName) => {
         max: max(lst),
         min: min(lst),
         std: std(lst),
-        lst: lst
+        lst: hundredBucket
     };
 
 }
