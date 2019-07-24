@@ -1,1 +1,3 @@
 # GCP_latency
+
+This project seeks to explore how the location of a computing unit affects the latency of different types of computing architecture. The two types of computing infrastructure that will be tested are GCP function servers and a two tier microserver application hosted by GCP kubernetes engine. The testing server is located in central U.S., and the tested computing units are locationed at Google's Data centers in central U.S., southeast Asia, and west Europe. The front end is built using Angular 8.0.0 and served using Express.js. 
