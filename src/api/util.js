@@ -10,13 +10,13 @@ const NUM_TEST = 30;
 // URL of us-central function
 const urlUsCentralFunc = 'https://us-central1-upheld-rookery-246419.cloudfunctions.net/function-1';
 
-// URL of asia-southeast function
+// URL of asia-east function
 // TODO: change
-const urlAsiaSouthEastFunc = 'https://us-central1-upheld-rookery-246419.cloudfunctions.net/function-1';
+const urlAsiaEastFunc = 'https://asia-east2-upheld-rookery-246419.cloudfunctions.net/function-2';
 
 // URL of europe-west function
 // TODO: change
-const urlEuroWestFunc = 'https://us-central1-upheld-rookery-246419.cloudfunctions.net/function-1';
+const urlEuroWestFunc = 'https://europe-west1-upheld-rookery-246419.cloudfunctions.net/function-2';
 
 
 /*
@@ -61,8 +61,8 @@ const matchFuncURL = (loc) => {
     switch(loc) {
         case 'us-central':
             return urlUsCentralFunc;
-        case 'asia-southeast':
-            return urlAsiaSouthEastFunc;
+        case 'asia-east':
+            return urlAsiaEastFunc;
         case "europe-west":
             return urlEuroWestFunc;
         default:
@@ -75,7 +75,7 @@ const matchFuncURL = (loc) => {
 
 /*
 Desc: Calculates Latency Statistics for Google Cloud Function Servers
-Input: 'us-central', 'asia-southeast', or `europe-west`
+Input: 'us-central', 'asia-east', or `europe-west`
 Output:
 { 
    testName: 'second test'
@@ -125,7 +125,7 @@ const funcStatistics = async (location, testName) => {
 // IP of us-central k8
 const IP_us = "http://35.188.77.79:80"
 
-// IP of asia-southeast k8
+// IP of asia-east k8
 // TODO: change
 const IP_asia = "http://35.188.77.79:80" 
 
@@ -142,7 +142,7 @@ const matchMultiIP = (loc) => {
     switch(loc) {
         case 'us-central':
             return IP_us;
-        case 'asia-southeast':
+        case 'asia-east':
             return IP_asia;
         case "europe-west":
             return IP_europe;
@@ -155,7 +155,7 @@ const matchMultiIP = (loc) => {
 
 /*
 Desc: Calculates Latency Statistics for Multilayer App
-Input: 'us-central', 'asia-southeast', or `europe-west`
+Input: 'us-central', 'asia-east', or `europe-west`
 Output: 
 { 
    testName: 'second test',
