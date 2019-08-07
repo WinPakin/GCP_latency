@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testserv
+  labels:
+    app: testserv
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testserv
+  template:
+    metadata:
+      labels:
+        app: testserv
+    spec:
+      containers:
+        - name: testserv
+          image: winpakin/testserv:0.0.1
+          ports:
+            - containerPort: 5002 

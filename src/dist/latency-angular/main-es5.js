@@ -316,7 +316,51 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"p-5 mx-5 mt-3 shadow-lg rounded\">\n                <div class=\"alert alert-primary font-weight-bold shadow rounded\">\n                        Project Introduction\n                </div>\n\n                \n                \n                <p class=\"p-5 shadow rounded\">\n                        This project seeks to explore how the location of a computing unit affects the latency of the different types of computing architectures. The two types of computing infrastructures that will be tested are the GCP function servers and a two tier microserver application hosted by GCP kubernetes engine. The testing server is located in central U.S., and the tested computing units are locationed at Google's Data centers in central U.S. (Iowa), east Asia (Hong Kong), and west Europe (Belgium). The front end is built using Angular 8.0.0 and served using Express.js.  \n                \n           \n                </p>\n                \n                <div class=\"alert alert-primary font-weight-bold shadow rounded\">\n                        Serverless Function Latency Tests\n                </div>\n\n                <p class=\"p-5 shadow rounded\">\n                        Serverless Functions are single-purpose functions that are attached to events emitted from other infrastructures and services. The function gets triggered when the event that it watches is triggered. Since the functions are not provisioned on any servers, developers do not need to worry about configuring the infrastructure, making serverless functions one of the simpliest ways to deploy code on the code. \n                        <br>\n                        <br>\n                        The serverless functions will be tested according to the diagram below. Since the testing server is located in central U.S., we would expect the function servers located in central U.S. to have a lower latency than the function servers located on the other continents.            \n                </p>\n\n                <img src=\"assets/Function_Test.png\" class=\"img-fluid pic-size p-5 shadow rounded mb-3\">\n\n                <div class=\"alert alert-primary font-weight-bold shadow rounded\">\n                        Two Tier Microservice Latency Tests\n                </div>\n\n                <p class=\"p-5 shadow rounded\">\n                                The two tier microservice application is deployed using Google's Kubternetes Engine. GKE provides a managed environment for deploying, managing, and scaling containerized applications using Google infrastructure. The environment GKE provides consists of multiple machines (specifically, Google Compute Engine instances) grouped together to form a cluster.\n                                <br>\n                                <br>\n                                The two tier microservice application will be tested according to the diagram below. Same with the serverless function tests, since the testing server is located in central U.S., we would expect the function servers located in central U.S. to have a lower latency than the function servers located on the other continents.\n        \n                </p>\n\n                <img src=\"assets/MultiLayer_Test.png\" class=\"img-fluid pic-size p-5 shadow rounded mb-3\">\n\n\n\n        </div>"
+module.exports = "<div class=\"p-5 mx-5 mt-3 shadow-lg rounded\">\n                <div class=\"alert alert-primary font-weight-bold shadow rounded\">\n                        Location Test Introduction\n                </div>\n\n                \n                \n                <p class=\"p-5 shadow rounded\">\n                        The Location Test seeks to explore how the location of a computing unit affects the latency of the different types of computing architectures. The two types of computing infrastructures that will be tested are the GCP function servers and a two tier microserver application hosted by GCP kubernetes engine. The testing server is located in central U.S., and the tested computing units are locationed at Google's Data centers in central U.S. (Iowa), east Asia (Hong Kong), and west Europe (Belgium). The front end is built using Angular 8.0.0 and served using Express.js.  \n                \n           \n                </p>\n                \n                <div class=\"alert alert-primary font-weight-bold shadow rounded\">\n                        Serverless Function Latency Tests\n                </div>\n\n                <p class=\"p-5 shadow rounded\">\n                        Serverless Functions are single-purpose functions that are attached to events emitted from other infrastructures and services. The function gets triggered when the event that it watches is triggered. Since the functions are not provisioned on any servers, developers do not need to worry about configuring the infrastructure, making serverless functions one of the simpliest ways to deploy code on the code. \n                        <br>\n                        <br>\n                        The serverless functions will be tested according to the diagram below. Since the testing server is located in central U.S., we would expect the function servers located in central U.S. to have a lower latency than the function servers located on the other continents.            \n                </p>\n\n                <img src=\"assets/Function_Test.png\" class=\"img-fluid pic-size p-5 shadow rounded mb-3\">\n\n                <div class=\"alert alert-primary font-weight-bold shadow rounded\">\n                        Two Tier Microservice Latency Tests\n                </div>\n\n                <p class=\"p-5 shadow rounded\">\n                                The two tier microservice application is deployed using Google's Kubternetes Engine. GKE provides a managed environment for deploying, managing, and scaling containerized applications using Google infrastructure. The environment GKE provides consists of multiple machines (specifically, Google Compute Engine instances) grouped together to form a cluster.\n                                <br>\n                                <br>\n                                The two tier microservice application will be tested according to the diagram below. Same with the serverless function tests, since the testing server is located in central U.S., we would expect the function servers located in central U.S. to have a lower latency than the function servers located on the other continents.\n        \n                </p>\n\n                <img src=\"assets/MultiLayer_Test.png\" class=\"img-fluid pic-size p-5 shadow rounded mb-3\">\n\n                <div class=\"alert alert-primary font-weight-bold shadow rounded\">\n                        API Test Introduction\n                </div>\n                <p class=\"p-5 shadow rounded\">\n                        The API Test seeks to explore the latency difference between REST and gRPC APIs. \n                        REST uses HTTP 1.1, which has to establish an TCP handshake for every request. On the other hand, gRPC uses HTTP 2 by default. The minimize external factors, both the tester and tested servers are located in the same Kubternetes cluster. Also, the testing programs are written in Go. \n\n                        <br>\n                        <br>\n                        On top of having a lower latency, gRPC is preferrable over REST because it uses protocol buffers (binary) instead of JSON, which reduces the bandwidth. JSON is also more CPU intensive to parse. \n                </p>\n\n\n                <img src=\"assets/API_Test.png\" class=\"img-fluid pic-size p-5 shadow rounded mb-3\">\n\n\n\n        </div>"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/api-test-case/api-test-case.component.html":
+/*!**************************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/api-test-case/api-test-case.component.html ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<!-- Display Each Test cases -->\n<div class=\"p-5 m-5 shadow-lg rounded\" *ngFor=\"let stat of statLst$ | async\">\n    <div class=\"alert alert-success font-weight-bold shadow rounded\">\n            {{ stat.testName }}: latency measured in milliseconds.\n    </div>\n    <table class=\"table\">\n            <thead>\n              <tr>\n                <th scope=\"col\">API Type</th>\n                <th scope=\"col\">Mean</th>\n                <th scope=\"col\">Median</th>\n                <th scope=\"col\">Max</th>\n                <th scope=\"col\">Min</th>\n                <th scope=\"col\">Std</th>\n\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                <td>{{ stat.apiType }}</td>\n                <td>{{ stat.mean }}</td>\n                <td>{{ stat.median }}</td>\n                <td>{{ stat.max }}</td>\n                <td>{{ stat.min }}</td>\n                <td>{{ stat.std }}</td>\n              </tr>\n            </tbody>\n    </table>\n\n  <!-- chart.js data -->\n    <div class=\"chart\">\n                <canvas baseChart\n                        [datasets]= \"[{data: stat.lst, label: 'Latency (ms)'}]\"\n                        [labels]=\"barChartLabels\"\n                        [options]=\"barChartOptions\"\n                        [legend]=\"barChartLegend\"\n                        [chartType]=\"barChartType\">\n                </canvas>\n    </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/api-test-delete/api-test-delete.component.html":
+/*!******************************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/api-test-delete/api-test-delete.component.html ***!
+  \******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"p-3 mt-3 shadow-lg rounded\">\n\n    <!-- Button trigger modal -->\n    <button type=\"button\" class=\"btn btn-danger mx-5\" data-toggle=\"modal\" data-target=\"#exampleModal\">\n       Delete Previous Tests\n</button>\n<!-- Modal -->\n<div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n   <div class=\"modal-dialog\" role=\"document\">\n       <div class=\"modal-content\">\n       <div class=\"modal-header\">\n           <h5 class=\"modal-title\" id=\"exampleModalLabel\">Delete</h5>\n           <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n           <span aria-hidden=\"true\">&times;</span>\n           </button>\n       </div>\n       <div class=\"modal-body\">\n           Are you sure you want to delete all your previous tests?\n       </div>\n       <div class=\"modal-footer\">\n           <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Cancel</button>\n           <button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\" (click)=\"onDelete()\">Yes, Delete</button>\n       </div>\n       </div>\n   </div>\n   </div>\n\n</div>\n"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/api-test-form/api-test-form.component.html":
+/*!**************************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/api-test-form/api-test-form.component.html ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "{{ status }}\n<form [formGroup]=\"apiTestForm\" (ngSubmit)=\"onSubmit(apiTestForm.value)\" class=\"p-3 mt-3 shadow-lg rounded\">\n\n        <div class=\"alert alert-danger\" role=\"alert\" *ngIf=\"error.length > 0\">\n                {{ error }}\n        </div>\n        <!-- Test Name -->\n            <div class=\"form-group row\">\n                    <label for=\"testName\" class=\"col-sm-2 col-form-label\">Test Name</label>\n                    <div class=\"col-sm-10\">\n                      <input type=\"text\" class=\"form-control\" id=\"testName\" placeholder=\"first API test\" formControlName=\"testName\">\n                    </div>\n            </div>\n        \n        <!-- API Type -->\n        <fieldset class=\"form-group\">\n            <div class=\"row\">\n            <legend class=\"col-form-label col-sm-2 pt-0\">API Type</legend>\n            <div class=\"col-sm-10\">\n                <div class=\"form-check\">\n                <input class=\"form-check-input\" type=\"radio\" id=\"REST\" value=\"REST\" formControlName=\"apiType\">\n                <label class=\"form-check-label\" for=\"REST\">\n                    REST \n                </label>\n                </div>\n                <div class=\"form-check\">\n                <input class=\"form-check-input\" type=\"radio\" id=\"gRPC\" value=\"gRPC\" formControlName=\"apiType\">\n                <label class=\"form-check-label\" for=\"gRPC\">\n                    gRPC\n                </label>\n                </div>\n            </div>\n            </div>\n        </fieldset>\n    \n\n    \n            <!-- Submit Button -->\n            <div class=\"form-group row\">\n              <div class=\"col-sm-10\">\n                <button type=\"submit\" class=\"btn btn-primary\">Test API</button>\n              </div>\n            </div>\n    </form>\n"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/api-test/api-test.component.html":
+/*!****************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/api-test/api-test.component.html ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-8\">\n          <app-api-test-form></app-api-test-form>\n      </div>\n      <div class=\"col-4\">\n          <app-api-test-delete></app-api-test-delete>\n      </div>\n      \n      \n    </div>\n  </div>\n  \n  \n  <app-api-test-case></app-api-test-case>\n"
 
 /***/ }),
 
@@ -349,7 +393,7 @@ module.exports = "<div class=\"p-5 mx-5 mt-3 shadow-lg rounded\">\n        <div 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">\n<a class=\"navbar-brand\" href=\"#\">GCP Infastructure Statistics</a>\n<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNavAltMarkup\" aria-controls=\"navbarNavAltMarkup\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n</button>\n<div class=\"collapse navbar-collapse\" id=\"navbarNavAltMarkup\">\n    <div class=\"navbar-nav\">\n    <a class=\"nav-item nav-link\" routerLink=\"/test\" [class.active]=\"activePage === 'test'\" (click)=\"onSelect('test')\">Test</a>\n    <a class=\"nav-item nav-link\" routerLink=\"/about\" [class.active]=\"activePage === 'about'\" (click)=\"onSelect('about')\">About</a>\n    <a class=\"nav-item nav-link\" routerLink=\"/contact\" [class.active]=\"activePage === 'contact'\" (click)=\"onSelect('contact')\">Contact</a>\n    </div>\n</div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">\n<a class=\"navbar-brand\" href=\"#\">GCP Infastructure Statistics</a>\n<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNavAltMarkup\" aria-controls=\"navbarNavAltMarkup\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n</button>\n<div class=\"collapse navbar-collapse\" id=\"navbarNavAltMarkup\">\n    <div class=\"navbar-nav\">\n    <a class=\"nav-item nav-link\" routerLink=\"/loc_test\" [class.active]=\"activePage === 'loc_test'\" (click)=\"onSelect('loc_test')\">Location Test</a>\n    <a class=\"nav-item nav-link\" routerLink=\"/api_test\" [class.active]=\"activePage === 'api_test'\" (click)=\"onSelect('api_test')\">API Test</a>\n    <a class=\"nav-item nav-link\" routerLink=\"/about\" [class.active]=\"activePage === 'about'\" (click)=\"onSelect('about')\">About</a>\n    <a class=\"nav-item nav-link\" routerLink=\"/contact\" [class.active]=\"activePage === 'contact'\" (click)=\"onSelect('contact')\">Contact</a>\n    </div>\n</div>\n</nav>\n"
 
 /***/ }),
 
@@ -393,7 +437,7 @@ module.exports = "{{ status }}\n<form [formGroup]=\"sendTestForm\" (ngSubmit)=\"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-8\">\n        <app-test-form></app-test-form>\n    </div>\n    <div class=\"col-4\">\n        <app-test-delete></app-test-delete>\n    </div>\n    \n    \n  </div>\n</div>\n\n\n\n\n<app-test-case></app-test-case>\n\n"
+module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-8\">\n        <app-test-form></app-test-form>\n    </div>\n    <div class=\"col-4\">\n        <app-test-delete></app-test-delete>\n    </div>\n    \n    \n  </div>\n</div>\n\n\n<app-test-case></app-test-case>\n\n"
 
 /***/ }),
 
@@ -404,7 +448,7 @@ module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div cla
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".pic-size {\n    max-width: 75%;\n    height: auto;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYWJvdXQvYWJvdXQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGNBQWM7SUFDZCxZQUFZO0FBQ2hCIiwiZmlsZSI6InNyYy9hcHAvYWJvdXQvYWJvdXQuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5waWMtc2l6ZSB7XG4gICAgbWF4LXdpZHRoOiA3NSU7XG4gICAgaGVpZ2h0OiBhdXRvO1xufSJdfQ== */"
+module.exports = ".pic-size {\n    max-width: 65%;\n    height: auto;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9hYm91dC9hYm91dC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksY0FBYztJQUNkLFlBQVk7QUFDaEIiLCJmaWxlIjoiYXBwL2Fib3V0L2Fib3V0LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIucGljLXNpemUge1xuICAgIG1heC13aWR0aDogNjUlO1xuICAgIGhlaWdodDogYXV0bztcbn0iXX0= */"
 
 /***/ }),
 
@@ -442,6 +486,313 @@ var AboutComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/api-test-case/api-test-case.component.css":
+/*!***********************************************************!*\
+  !*** ./src/app/api-test-case/api-test-case.component.css ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".chart {\n    height: 200px;\n    width: 500px;\n    display: inline-block;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9hcGktdGVzdC1jYXNlL2FwaS10ZXN0LWNhc2UuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGFBQWE7SUFDYixZQUFZO0lBQ1oscUJBQXFCO0VBQ3ZCIiwiZmlsZSI6ImFwcC9hcGktdGVzdC1jYXNlL2FwaS10ZXN0LWNhc2UuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jaGFydCB7XG4gICAgaGVpZ2h0OiAyMDBweDtcbiAgICB3aWR0aDogNTAwcHg7XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICB9Il19 */"
+
+/***/ }),
+
+/***/ "./src/app/api-test-case/api-test-case.component.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/api-test-case/api-test-case.component.ts ***!
+  \**********************************************************/
+/*! exports provided: ApiTestCaseComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApiTestCaseComponent", function() { return ApiTestCaseComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _api_test_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../api-test.service */ "./src/app/api-test.service.ts");
+
+
+
+var ApiTestCaseComponent = /** @class */ (function () {
+    function ApiTestCaseComponent(apiTestService) {
+        this.apiTestService = apiTestService;
+        // Bar chart configuration
+        this.barChartOptions = {
+            scaleShowVerticalLines: false,
+            responsive: true
+        };
+        this.barChartLabels = ['< 1', '< 2', '< 3', '< 4', '< 5', '< 6', '< 7', '< 8', '< 9', '> 900'];
+        this.barChartType = 'bar';
+        this.barChartLegend = true;
+        this.statLst$ = this.apiTestService.getLst();
+    }
+    ApiTestCaseComponent.prototype.ngOnInit = function () {
+    };
+    ApiTestCaseComponent.ctorParameters = function () { return [
+        { type: _api_test_service__WEBPACK_IMPORTED_MODULE_2__["ApiTestService"] }
+    ]; };
+    ApiTestCaseComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-api-test-case',
+            template: __webpack_require__(/*! raw-loader!./api-test-case.component.html */ "./node_modules/raw-loader/index.js!./src/app/api-test-case/api-test-case.component.html"),
+            styles: [__webpack_require__(/*! ./api-test-case.component.css */ "./src/app/api-test-case/api-test-case.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_api_test_service__WEBPACK_IMPORTED_MODULE_2__["ApiTestService"]])
+    ], ApiTestCaseComponent);
+    return ApiTestCaseComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/api-test-delete/api-test-delete.component.css":
+/*!***************************************************************!*\
+  !*** ./src/app/api-test-delete/api-test-delete.component.css ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvYXBpLXRlc3QtZGVsZXRlL2FwaS10ZXN0LWRlbGV0ZS5jb21wb25lbnQuY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/api-test-delete/api-test-delete.component.ts":
+/*!**************************************************************!*\
+  !*** ./src/app/api-test-delete/api-test-delete.component.ts ***!
+  \**************************************************************/
+/*! exports provided: ApiTestDeleteComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApiTestDeleteComponent", function() { return ApiTestDeleteComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _api_test_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../api-test.service */ "./src/app/api-test.service.ts");
+
+
+
+var ApiTestDeleteComponent = /** @class */ (function () {
+    function ApiTestDeleteComponent(apiTestService) {
+        this.apiTestService = apiTestService;
+    }
+    ApiTestDeleteComponent.prototype.onDelete = function () {
+        this.apiTestService.delete();
+    };
+    ApiTestDeleteComponent.prototype.ngOnInit = function () {
+    };
+    ApiTestDeleteComponent.ctorParameters = function () { return [
+        { type: _api_test_service__WEBPACK_IMPORTED_MODULE_2__["ApiTestService"] }
+    ]; };
+    ApiTestDeleteComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-api-test-delete',
+            template: __webpack_require__(/*! raw-loader!./api-test-delete.component.html */ "./node_modules/raw-loader/index.js!./src/app/api-test-delete/api-test-delete.component.html"),
+            styles: [__webpack_require__(/*! ./api-test-delete.component.css */ "./src/app/api-test-delete/api-test-delete.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_api_test_service__WEBPACK_IMPORTED_MODULE_2__["ApiTestService"]])
+    ], ApiTestDeleteComponent);
+    return ApiTestDeleteComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/api-test-form/api-test-form.component.css":
+/*!***********************************************************!*\
+  !*** ./src/app/api-test-form/api-test-form.component.css ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvYXBpLXRlc3QtZm9ybS9hcGktdGVzdC1mb3JtLmNvbXBvbmVudC5jc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/api-test-form/api-test-form.component.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/api-test-form/api-test-form.component.ts ***!
+  \**********************************************************/
+/*! exports provided: ApiTestFormComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApiTestFormComponent", function() { return ApiTestFormComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _api_test_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../api-test.service */ "./src/app/api-test.service.ts");
+
+
+
+
+var ApiTestFormComponent = /** @class */ (function () {
+    function ApiTestFormComponent(formBuilder, apiTestService) {
+        this.formBuilder = formBuilder;
+        this.apiTestService = apiTestService;
+        this.error = "";
+        this.apiTestForm = this.formBuilder.group({
+            testName: '',
+            apiType: '',
+        });
+    }
+    ApiTestFormComponent.prototype.onSubmit = function (data) {
+        if (!data.testName || data.testName.length === 0) {
+            this.error = "Your test name cannot be empty!";
+        }
+        else if (!data.apiType || data.apiType.length === 0) {
+            this.error = "You must select an API type!";
+        }
+        else {
+            this.error = "";
+            this.apiTestService.add(data);
+            this.apiTestForm.reset();
+        }
+    };
+    ApiTestFormComponent.prototype.ngOnInit = function () {
+    };
+    ApiTestFormComponent.ctorParameters = function () { return [
+        { type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"] },
+        { type: _api_test_service__WEBPACK_IMPORTED_MODULE_3__["ApiTestService"] }
+    ]; };
+    ApiTestFormComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-api-test-form',
+            template: __webpack_require__(/*! raw-loader!./api-test-form.component.html */ "./node_modules/raw-loader/index.js!./src/app/api-test-form/api-test-form.component.html"),
+            styles: [__webpack_require__(/*! ./api-test-form.component.css */ "./src/app/api-test-form/api-test-form.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
+            _api_test_service__WEBPACK_IMPORTED_MODULE_3__["ApiTestService"]])
+    ], ApiTestFormComponent);
+    return ApiTestFormComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/api-test.service.ts":
+/*!*************************************!*\
+  !*** ./src/app/api-test.service.ts ***!
+  \*************************************/
+/*! exports provided: ApiTestService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApiTestService", function() { return ApiTestService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+
+
+
+
+var ApiTestService = /** @class */ (function () {
+    function ApiTestService(http) {
+        this.http = http;
+        this.placeholder = {
+            testName: "first api test",
+            apiType: "REST",
+            mean: 10,
+            median: 8.5,
+            max: 25,
+            min: 7,
+            std: 6.4,
+            lst: [10, 14, 15, 18, 8, 1, 2, 3, 4, 7]
+        };
+        this.lst = [];
+    }
+    // appends data to the list
+    ApiTestService.prototype.add = function (data) {
+        // let qString = `api/${data.infrastructure}/${data.location}/${data.testName}`;
+        // this.http.get<Data>(qString).subscribe( (res:Data) => {
+        //   this.testLst.push(res);
+        // })
+        var _this = this;
+        // this.lst.push(this.placeholder)
+        var qString = "api/" + data.testName + "/" + data.apiType;
+        this.http.get(qString).subscribe(function (res) {
+            _this.lst.push(res);
+        });
+    };
+    // returns observable containing testLst
+    ApiTestService.prototype.getLst = function () {
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(this.lst);
+    };
+    // delete exsisting tests
+    ApiTestService.prototype.delete = function () {
+        this.lst.length = 0;
+    };
+    // test get
+    ApiTestService.prototype.testGet = function () {
+        // return this.http.get<Message>('api/test/angular');
+    };
+    ApiTestService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"] }
+    ]; };
+    ApiTestService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
+    ], ApiTestService);
+    return ApiTestService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/api-test/api-test.component.css":
+/*!*************************************************!*\
+  !*** ./src/app/api-test/api-test.component.css ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvYXBpLXRlc3QvYXBpLXRlc3QuY29tcG9uZW50LmNzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/api-test/api-test.component.ts":
+/*!************************************************!*\
+  !*** ./src/app/api-test/api-test.component.ts ***!
+  \************************************************/
+/*! exports provided: ApiTestComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApiTestComponent", function() { return ApiTestComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var ApiTestComponent = /** @class */ (function () {
+    function ApiTestComponent() {
+    }
+    ApiTestComponent.prototype.ngOnInit = function () {
+    };
+    ApiTestComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-api-test',
+            template: __webpack_require__(/*! raw-loader!./api-test.component.html */ "./node_modules/raw-loader/index.js!./src/app/api-test/api-test.component.html"),
+            styles: [__webpack_require__(/*! ./api-test.component.css */ "./src/app/api-test/api-test.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], ApiTestComponent);
+    return ApiTestComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/app-routing.module.ts":
 /*!***************************************!*\
   !*** ./src/app/app-routing.module.ts ***!
@@ -458,6 +809,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _test_test_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./test/test.component */ "./src/app/test/test.component.ts");
 /* harmony import */ var _about_about_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./about/about.component */ "./src/app/about/about.component.ts");
 /* harmony import */ var _contact_contact_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./contact/contact.component */ "./src/app/contact/contact.component.ts");
+/* harmony import */ var _api_test_api_test_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./api-test/api-test.component */ "./src/app/api-test/api-test.component.ts");
+
 
 
 
@@ -465,10 +818,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var routes = [
-    { path: 'test', component: _test_test_component__WEBPACK_IMPORTED_MODULE_3__["TestComponent"] },
+    { path: 'loc_test', component: _test_test_component__WEBPACK_IMPORTED_MODULE_3__["TestComponent"] },
     { path: 'about', component: _about_about_component__WEBPACK_IMPORTED_MODULE_4__["AboutComponent"] },
     { path: 'contact', component: _contact_contact_component__WEBPACK_IMPORTED_MODULE_5__["ContactComponent"] },
-    { path: '**', redirectTo: 'test', pathMatch: 'full' }
+    { path: 'api_test', component: _api_test_api_test_component__WEBPACK_IMPORTED_MODULE_6__["ApiTestComponent"] },
+    { path: '**', redirectTo: 'loc_test', pathMatch: 'full' }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -493,7 +847,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvYXBwLmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -554,6 +908,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _test_form_test_form_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./test-form/test-form.component */ "./src/app/test-form/test-form.component.ts");
 /* harmony import */ var _test_delete_test_delete_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./test-delete/test-delete.component */ "./src/app/test-delete/test-delete.component.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _api_test_api_test_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./api-test/api-test.component */ "./src/app/api-test/api-test.component.ts");
+/* harmony import */ var _api_test_form_api_test_form_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./api-test-form/api-test-form.component */ "./src/app/api-test-form/api-test-form.component.ts");
+/* harmony import */ var _api_test_delete_api_test_delete_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./api-test-delete/api-test-delete.component */ "./src/app/api-test-delete/api-test-delete.component.ts");
+/* harmony import */ var _api_test_case_api_test_case_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./api-test-case/api-test-case.component */ "./src/app/api-test-case/api-test-case.component.ts");
+
+
+
+
 
 
 
@@ -582,7 +944,11 @@ var AppModule = /** @class */ (function () {
                 _contact_contact_component__WEBPACK_IMPORTED_MODULE_9__["ContactComponent"],
                 _test_case_test_case_component__WEBPACK_IMPORTED_MODULE_11__["TestCaseComponent"],
                 _test_form_test_form_component__WEBPACK_IMPORTED_MODULE_12__["TestFormComponent"],
-                _test_delete_test_delete_component__WEBPACK_IMPORTED_MODULE_13__["TestDeleteComponent"]
+                _test_delete_test_delete_component__WEBPACK_IMPORTED_MODULE_13__["TestDeleteComponent"],
+                _api_test_api_test_component__WEBPACK_IMPORTED_MODULE_15__["ApiTestComponent"],
+                _api_test_form_api_test_form_component__WEBPACK_IMPORTED_MODULE_16__["ApiTestFormComponent"],
+                _api_test_delete_api_test_delete_component__WEBPACK_IMPORTED_MODULE_17__["ApiTestDeleteComponent"],
+                _api_test_case_api_test_case_component__WEBPACK_IMPORTED_MODULE_18__["ApiTestCaseComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -609,7 +975,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbnRhY3QvY29udGFjdC5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvY29udGFjdC9jb250YWN0LmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -654,7 +1020,7 @@ var ContactComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2hlYWRlci9oZWFkZXIuY29tcG9uZW50LmNzcyJ9 */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvaGVhZGVyL2hlYWRlci5jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
@@ -670,24 +1036,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HeaderComponent", function() { return HeaderComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
 
 
 var HeaderComponent = /** @class */ (function () {
-    function HeaderComponent() {
-        this.activePage = "test";
+    function HeaderComponent(router, activatedRoute) {
+        var _this = this;
+        this.router = router;
+        this.activatedRoute = activatedRoute;
+        this.activePage = "";
+        router.events.subscribe(function (data) {
+            if (data.url) {
+                _this.activePage = data.url.slice(1);
+            }
+        });
     }
     HeaderComponent.prototype.onSelect = function (activePage) {
         this.activePage = activePage;
     };
     HeaderComponent.prototype.ngOnInit = function () {
     };
+    HeaderComponent.ctorParameters = function () { return [
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] }
+    ]; };
     HeaderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-header',
             template: __webpack_require__(/*! raw-loader!./header.component.html */ "./node_modules/raw-loader/index.js!./src/app/header/header.component.html"),
             styles: [__webpack_require__(/*! ./header.component.css */ "./src/app/header/header.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
     ], HeaderComponent);
     return HeaderComponent;
 }());
@@ -792,7 +1173,7 @@ var StatisticsService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".chart {\n    height: 200px;\n    width: 500px;\n    display: inline-block;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGVzdC1jYXNlL3Rlc3QtY2FzZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksYUFBYTtJQUNiLFlBQVk7SUFDWixxQkFBcUI7RUFDdkIiLCJmaWxlIjoic3JjL2FwcC90ZXN0LWNhc2UvdGVzdC1jYXNlLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2hhcnQge1xuICAgIGhlaWdodDogMjAwcHg7XG4gICAgd2lkdGg6IDUwMHB4O1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgfSJdfQ== */"
+module.exports = ".chart {\n    height: 200px;\n    width: 500px;\n    display: inline-block;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC90ZXN0LWNhc2UvdGVzdC1jYXNlLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxhQUFhO0lBQ2IsWUFBWTtJQUNaLHFCQUFxQjtFQUN2QiIsImZpbGUiOiJhcHAvdGVzdC1jYXNlL3Rlc3QtY2FzZS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNoYXJ0IHtcbiAgICBoZWlnaHQ6IDIwMHB4O1xuICAgIHdpZHRoOiA1MDBweDtcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIH0iXX0= */"
 
 /***/ }),
 
@@ -852,7 +1233,7 @@ var TestCaseComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3Rlc3QtZGVsZXRlL3Rlc3QtZGVsZXRlLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvdGVzdC1kZWxldGUvdGVzdC1kZWxldGUuY29tcG9uZW50LmNzcyJ9 */"
 
 /***/ }),
 
@@ -907,7 +1288,7 @@ var TestDeleteComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3Rlc3QtZm9ybS90ZXN0LWZvcm0uY29tcG9uZW50LmNzcyJ9 */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvdGVzdC1mb3JtL3Rlc3QtZm9ybS5jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
@@ -985,7 +1366,7 @@ var TestFormComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3Rlc3QvdGVzdC5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvdGVzdC90ZXN0LmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 

@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: latency-frontend
-        image: winpakin/latency-frontend
+        image: winpakin/latency-frontend:0.0.3
         ports:
           - containerPort: 8080

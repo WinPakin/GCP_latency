@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const {funcStatistics, multiLayerStatistics} = require('./util.js');
+const axios = require('axios');
 
 /*
 Desc: Tester
@@ -48,4 +49,41 @@ router.get('/:infrastructure/:location/:testName',
             }
     )
 
+/*
+Desc: Latency Statistics for REST and gRPC APIs
+Input:
+    1) :testName = any string
+    2) :apiType = 'REST' or 'gRPC' 
+Output: 
+{
+    "testName": "postman",
+    "apiType": "REST",
+    "mean": 2.47,
+    "median": 1.24,
+    "max": 15.34,
+    "min": 0.43,
+    "std": 3.2,
+    "lst": [
+        20, 3, ..., 0
+    ]
+}
+*/
+router.get('/:testname/:apitype',
+    (req, res) => {
+        axios.post(GO_TEST_SERVER_IP, {
+            testName: req.params.testname,
+            apiType: req.params.apitype
+          })
+          .then(function (response) {
+            res.send(response.data)
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        // res.send("got it")
+    }
+)
+
+const GO_TEST_SERVER_IP = 'http://testserv-service:80/gotest';
+// const GO_TEST_SERVER_IP = 'http://localhost:5002/gotest';
 module.exports = router;
